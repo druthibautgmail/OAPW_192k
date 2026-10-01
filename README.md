@@ -75,7 +75,7 @@ graph TD
     
     subgraph OAPW [OAPW_Player: 64-Bit Echtzeit-DSP]
         D[Normierung: S32_LE zu Double]:::dsp
-        E[RACE Algorithmus: Hermite 68us]:::dsp
+        E[RACE Algorithmus: Hermite, eg. 68us or 70us]:::dsp
         F[Denormierung: Double zu S32_LE]:::dsp
     end
     
