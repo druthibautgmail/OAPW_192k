@@ -58,6 +58,8 @@ make -j4
 
 ## Diagramm der Signalverarbeitung in Version 16.0 (OAPW_192k)
 
+```mermaid
+
 graph TD
     classDef file fill:#2d2d2d,stroke:#007aff,stroke-width:2px,color:#fff
     classDef process fill:#1e1e1e,stroke:#fff,stroke-width:1px,color:#fff
@@ -88,3 +90,4 @@ graph TD
     G -->|192 kHz PCM| H
     H -->|Bit-Perfect| I
 
+´´´ 
