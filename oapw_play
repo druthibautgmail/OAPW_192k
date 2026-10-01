@@ -1,0 +1,158 @@
+#!/bin/bash
+
+#
+# oapw-play
+#
+# Rekursiver Audio-Streamer für OAPW
+#
+
+PIPE="/tmp/oapw_stream"
+
+# OAPW Audio-Spezifikationen
+SAMPLE_RATE=44100
+CHANNELS=2
+FORMAT="s16le"
+
+# Signal-Handling: Komplettes Skript bei Strg+C beenden
+trap 'echo -e "\nWiedergabe abgebrochen."; exit 0' INT TERM
+
+usage()
+{
+cat << EOF
+
+oapw-play [OPTION]... [DIRECTORY]
+
+Optionen
+
+    --shuffle      zufällige Reihenfolge
+    --repeat       Endlosschleife
+    --help         diese Hilfe
+
+Beispiele
+
+    oapw-play
+    oapw-play .
+    oapw-play ~/Music
+    oapw-play --shuffle ~/Music
+    oapw-play --repeat ~/Music
+    oapw-play --shuffle --repeat ~/Music
+
+EOF
+}
+
+shuffle=false
+repeat=false
+directory="."
+
+while [[ $# -gt 0 ]]
+do
+    case "$1" in
+        --shuffle)
+            shuffle=true
+            ;;
+        --repeat)
+            repeat=true
+            ;;
+        --help|-h)
+            usage
+            exit 0
+            ;;
+        *)
+            directory="$1"
+            ;;
+    esac
+    shift
+done
+
+if [[ ! -d "$directory" ]]
+then
+    echo "Verzeichnis existiert nicht: $directory"
+    exit 1
+fi
+
+if [[ ! -p "$PIPE" ]]
+then
+    echo "FIFO nicht gefunden: $PIPE"
+    exit 1
+fi
+
+echo
+echo "OAPW Player"
+echo "Verzeichnis : $directory"
+echo "Shuffle     : $shuffle"
+echo "Repeat      : $repeat"
+echo
+
+# Hilfsfunktion für die Dateisuche (DRY-Prinzip)
+get_audio_files() {
+    local find_cmd=(
+        find "$directory" -type f
+        \( -iname "*.wav" -o -iname "*.flac" -o -iname "*.mp3" -o -iname "*.m4a" \)
+        -print0
+    )
+    
+    if $shuffle; then
+        "${find_cmd[@]}" | shuf -z
+    else
+        "${find_cmd[@]}" | sort -z
+    fi
+}
+
+while true
+do
+# Arrays sicher befüllen (kompatibel mit Bash 3.2 und neuer)
+    files=()
+    while IFS= read -r -d '' file; do
+        files+=("$file")
+    done < <(get_audio_files)
+#    
+# Bei neueren Versionen der bash als 3.x geht auch 
+# Arrays sicher befüllen mit folgender Zeile (einfach auskommentieren und die Funktion direkt darüber auskommentieren
+#
+# mapfile -d '' files < <(get_audio_files)
+
+    total=${#files[@]}
+
+    if (( total == 0 ))
+    then
+        echo "Keine Audiodateien gefunden."
+        exit 0
+    fi
+
+    count=1
+
+    for file in "${files[@]}"
+    do
+        clear
+        echo "=========================================="
+        echo " OAPW Player (Ausgabe an: $PIPE)"
+        echo " Format: $FORMAT, $SAMPLE_RATE Hz, $CHANNELS CH"
+        echo "=========================================="
+        echo
+        echo "Titel      : $count / $total"
+        echo
+        echo "$file"
+        echo
+
+        # ffmpeg blockiert, bis OAPW am anderen Ende der Pipe liest
+        ffmpeg \
+            -hide_banner \
+            -loglevel error \
+            -re \
+            -i "$file" \
+            -f "$FORMAT" \
+            -ar "$SAMPLE_RATE" \
+            -ac "$CHANNELS" \
+            pipe:1 > "$PIPE"
+
+        ((count++))
+    done
+
+    if ! $repeat
+    then
+        break
+    fi
+done
+
+echo
+echo "Fertig."
