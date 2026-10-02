@@ -4,7 +4,7 @@
 **Plattform:** C++17 / Cross-Plattform (Raspberry Pi 5 mit DAC Hat Pro)
 
 ## Über das Projekt
-OAPW ist eine hocheffiziente, block-basierte Echtzeit-Audio-Engine. Sie implementiert den "Recursive Ambiophonic Crosstalk Elimination" (RACE) Algorithmus nach Ralph Glasgal, um das akustische Übersprechen bei einer regulären Stereo-Lautsprecheraufstellung zu reduzieren und eine dreidimensionale, holografische Wiedergabe zu erzielen.
+OAPW ist eine hocheffiziente, block-basierte Echtzeit-Audio-Engine. Sie implementiert den "Recursive Ambiophonic Crosstalk Elimination" (RACE) Algorithmus nach Ralph Glasgal, um das akustische Übersprechen bei einer regulären Stereo-Lautsprecheraufstellung zu reduzieren und eine dreidimensionale, holografische Wiedergabe zu erzielen. Für bessere Effekte ist dabei eine relativ enge Lautsprecher-Aufstellung im Winkel von 10 bis 20° relativ zum Zuhörer ideal. 
 
 Für eine kurze Einführung in die Ambiophonie als audiophile Wiedergabetechnik siehe die beiliegende README.txt sowie die dort zitierte Original-Literatur von Ralph Glasgal et al.
 
