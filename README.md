@@ -11,7 +11,7 @@ Für eine kurze Einführung in die Ambiophonie als audiophile Wiedergabetechnik 
 ## Neue Version 16.0 mit 192kHz Samplingfrequenz und 32Bit Auflösung auf speziellen Wunsch
 Die Architektur wurde über die vergangenen Versionen massiv ausgebaut. In der Version 16.0 werden Audiostreams mit einer Samplingfrequenz von 192.000 Hz in 32Bit Auflösung verarbeitet, um die Qualität weiter zu steigern.:
 
-1. **Dynamische Hardware-Erkennung (CMake):** Der Build-Prozess erkennt nun automatisch die zugrunde liegende CPU-Architektur (`-mcpu=native`). Das Projekt kompiliert ohne Code-Änderungen nativ auf Raspberry Pi 5 (Cortex-A76), Raspberry Pi 4 (Cortex-A72). Eine weitere Version für macOS ist in einem separaten Repository als Beta-Release verfügbar.
+1. **Dynamische Hardware-Erkennung (CMake):** Der Build-Prozess erkennt nun automatisch die zugrunde liegende CPU-Architektur   (`-mcpu=native`). Das Projekt kompiliert ohne Code-Änderungen nativ auf Raspberry Pi 5 (Cortex-A76), Raspberry Pi 4 (Cortex-A72). Eine weitere Version für macOS ist in einem separaten Repository als Beta-Release verfügbar.
 2. **Parametrischer Equalizer (DSP):** Die RACE-Engine verfügt nun über eine zuschaltbare EQ-Stufe, um raumakustische Moden (z.B. wandnahe Eck-Aufstellung) präzise auszugleichen.
 3. **Robuster Argument-Parser:** Ein neu geschriebener Parser erlaubt die flexible und fehlertolerante Einspielung von Audio-Streams zum Beispiel via ffmpeg (siehe dazu auch Diagramm der Signalverarbeitung weiter unten).
 
