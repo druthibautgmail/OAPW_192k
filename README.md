@@ -37,8 +37,8 @@ Das Projekt nutzt CMake und kompiliert sich automatisch passend für das erkannt
 
 ```bash
 # 1. Repository klonen
-git clone [https://github.com/druthibautgmail/oapw.git](https://github.com/druthibautgmail/oapw.git)
-cd oapw
+git clone https://github.com/druthibautgmail/OAPW_192k.git
+cd OAPW_192k
 
 # 2. Abhängigkeiten installieren (nur Debian/Raspberry Pi OS)
 sudo apt-get update
