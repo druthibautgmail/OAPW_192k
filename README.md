@@ -1,7 +1,7 @@
 # OAPW_192k (High Fidelity Ambiophonics Audio Engine 192kHz/32Bit) - Version 16.0
 
 **Entwickelt von:** Dr. Ulrich Thibaut
-**Plattform:** C++17 / Cross-Plattform (Raspberry Pi 5 mit DAC Hat Pro)
+**Plattform:** C++17 / Cross-Plattform (Ideal geeignet: Raspberry Pi 5 mit DAC Hat Pro)
 
 ## Über das Projekt
 OAPW ist eine hocheffiziente, block-basierte Echtzeit-Audio-Engine. Sie implementiert den "Recursive Ambiophonic Crosstalk Elimination" (RACE) Algorithmus nach Ralph Glasgal, um das akustische Übersprechen bei einer regulären Stereo-Lautsprecheraufstellung zu reduzieren und eine dreidimensionale, holografische Wiedergabe zu erzielen. Für bessere Effekte ist dabei eine relativ enge Lautsprecher-Aufstellung im Winkel von 10 bis 20° relativ zum Zuhörer ideal. 
