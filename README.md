@@ -56,13 +56,13 @@ make -j4
 ## Nutzung als reiner Audio-Stream Prozessor und manueller Testlauf mit aplay
 
 ```bash
-In einem Terminal folgendes Kommando ausführen:
+1. In einem Terminal folgendes Kommando ausführen:
 aplay -t raw -D hw:Katana,0 -c 2 -f S32_LE -r 192000 /tmp/oapw_stream
 
-und in einem zweiten Terminal dieses Kommando ausführen (startet den Player und das Web-Interface auf localhost:8080)
+2. in einem zweiten Terminal dieses Kommando ausführen (startet den Player und das Web-Interface auf localhost:8080)
 ./build/OAPW_Player --stream /tmp/oapw_stream
 
-und schließlich mit ffmpeg einen Audiostream (test.wav) in die OAPW_Player-Pipe schicken:
+3. einen Test-Audiostream (test.wav) mittels ffmpeg in die OAPW_Player-Pipe schicken:
 
 ffmpeg -re -i ~/OAPW/test.wav -f s32le -ac 2 -ar 192000 /tmp/oapw_in_stream
 
