@@ -22,7 +22,7 @@ Die Architektur wurde über die vergangenen Versionen massiv ausgebaut. In der V
    * Stream-Modus (Named Pipes), optimiert für Shairport Sync (AirPlay).
 * **Live-Steuerung:** Thread-sichere Anpassung aller DSP-Parameter (Volume, Delay, Attenuation, EQ, Center) in Echtzeit.
 * **Web-GUI:** Integrierter asynchroner Webserver (`httplib.h`) auf Port 8080 zur grafischen Headless-Steuerung aus dem Browser.
-* **Delay-Werte können jetzt unabhängig von der Sampling-Frequenz in µ-Sekunden-Schritten eingestellt werden, eine hochpräzise Hermite-Interpolation erlaubt so die Feinjustierung.
+* **Delay-Werte:** können jetzt unabhängig von der Sampling-Frequenz in µ-Sekunden-Schritten eingestellt werden, eine hochpräzise Hermite-Interpolation erlaubt so die Feinjustierung.
 ---
 
 ## Systemvoraussetzungen & Hardware
